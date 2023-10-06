@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+                body {
+            background-image: url("/static/lan_F.jpg");
+            background-size: cover;
+            color: white;
+            height: 50vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+            font-size: 3em;
+            font-family: Arial, sans-serif;
+
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .logo-container img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        .title {
+
+            font-size: 1em;
+            margin-bottom:50px;
+            margin-top:200px;
+        }
+.select-container {
+    margin: 20px 0; /* 上下边距为20px, 左右边距为0 */
+    font-size: 40px; /* 字体大小为16px */
+    display: flex; /* 使用flex布局以使label和select在同一行 */
+    align-items: center; /* 垂直居中对齐内容 */
+}
+
+.select-container label {
+    margin-right: 10px; /* 在label和select之间增加10px的间距 */
+}
+
+.select-container select {
+    padding: 5px 10px; /* 选择框内部的填充：上下5px，左右10px */
+    border: 1px solid #cccccc; /* 给选择框一个灰色的边框 */
+    border-radius: 4px; /* 边框圆角为4px */
+}
+
+
+
+
+        .profile-container img {
+            width: 100%;
+            height: auto;
+        }
+        /* New CSS for login form */
+                /* 应该是灰框*/
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            background: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+            padding: 10px;  /* reduce padding */
+            border-radius: 5px;
+            font-size: 0.5em;
+
+              padding: 20px;  /* 增加内边距 */
+
+              width: 600px;  /* 增加宽度 */
+    height: auto;  /* 根据内容自适应高度 */
+
+
+        }
+         /* 这个是输入字体控制 */
+        .login-container input {
+            margin-bottom: 5px; /* reduce margin */
+            padding: 5px; /* reduce padding */
+            font-size: 0.8em; /* reduce font-size */
+            background: transparent; /* make input box transparent */
+            color: white; /* change text color to white */
+            border: none; /* remove input box border */
+        }
+         /* 这个是按钮控制 */
+        .login-container button {
+            padding: 5px;
+            background-color: lightblue;
+            color: black;
+            border: none;
+            cursor: pointer;
+            font-size: 0.5em; /* reduce font-size */
+             margin-bottom:30px;
+
+        }
+        /* New CSS for website information */
+                 /* 这个是底部字体 */
+        .info-container {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+            font-size: 0.2em; /* adjust font size */
+        }
+    </style>
+    <script>
+
+        window.onload = function() {
+
+
+    document.getElementById('login-button').onclick = function() {
+        var username = document.getElementById('username-input').value;
+        var password = document.getElementById('password-input').value;
+
+        fetch('/brute_force', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({username: username, password: password})
+        }).then(response => response.json())
+          .then(data => alert(data.message));
+    }
+}
+
+
+    </script>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="/static/logo1.png" alt="Logo 1">
+
+        <img src="/static/logo3.png" alt="Logo 3">
+    </div>
+    <div class="title">
+        S-DES加解密暴力破解系统
+    </div>
+
+
+
+
+          <!-- 文本部分 -->
+    <div class="login-container">
+        <input id="username-input" type="text" placeholder="明文(如果有多组，请用英文分号隔开)" required/>
+        <input id="password-input" type="text" placeholder="密文(如果有多组，请用英文分号隔开)" required/>
+        <button id="login-button">开始破解</button>
+
+
+
+    </div>
+    <!-- New website information -->
+    <div class="info-container">
+        <p>所属单位：重庆大学大数据与软件学院  |   分工小组：RNG</p>
+        <p>开发人员：吴科明 李泽坤   |  联系方式：1281673219@qq.com</p>
+    </div>
+</body>
+</html>
